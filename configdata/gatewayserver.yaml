@@ -25,3 +25,7 @@ spring:
           uri: lb://mskart:8090
           predicates:
             - Path=/api/v1/kart/**
+        - id: msfee
+          uri: lb://msfee:8091
+          predicates:
+            - Path=/api/v1/fees/**
