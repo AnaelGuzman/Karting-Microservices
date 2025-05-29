@@ -29,3 +29,7 @@ spring:
           uri: lb://msfee:8091
           predicates:
             - Path=/api/v1/fees/**
+        - id: msuser
+          uri: lb://msuser:8092
+          predicates:
+            - Path=/api/v1/users/**
