@@ -33,3 +33,7 @@ spring:
           uri: lb://msuser:8092
           predicates:
             - Path=/api/v1/users/**
+        - id: msreservation
+          uri: lb://msreservation:8093
+          predicates:
+            - Path=/api/v1/reservations/**
