@@ -41,3 +41,7 @@ spring:
           uri: lb://mspeoplediscount
           predicates:
             - Path=/api/v1/peoples/**
+        - id: msfrecuencydiscount
+          uri: lb://msfrecuencydiscountt
+          predicates:
+            - Path=/api/v1/frecuency/**
