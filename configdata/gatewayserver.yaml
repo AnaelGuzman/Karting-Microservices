@@ -22,18 +22,22 @@ spring:
             allowedHeaders: "*"
       routes:
         - id: mskart
-          uri: lb://mskart:8090
+          uri: lb://mskart
           predicates:
             - Path=/api/v1/kart/**
         - id: msfee
-          uri: lb://msfee:8091
+          uri: lb://msfee
           predicates:
             - Path=/api/v1/fees/**
         - id: msuser
-          uri: lb://msuser:8092
+          uri: lb://msuser
           predicates:
             - Path=/api/v1/users/**
         - id: msreservation
-          uri: lb://msreservation:8093
+          uri: lb://msreservation
           predicates:
             - Path=/api/v1/reservations/**
+        - id: mspeoplediscount
+          uri: lb://mspeoplediscount
+          predicates:
+            - Path=/api/v1/peoples/**
