@@ -14,12 +14,6 @@ spring:
       discovery:
         locator:
           enabled: true
-      globalcors:
-        cors-configurations:
-          '[/**]':
-            allowedOrigins: '*'
-            allowedMethods: "*"
-            allowedHeaders: "*"
       routes:
         - id: mskart
           uri: lb://mskart
@@ -45,3 +39,7 @@ spring:
           uri: lb://msfrecuencydiscount
           predicates:
             - Path=/api/v1/frecuency/**
+        - id: msspecialdaydiscount
+          uri: lb://msspecialdaydiscount
+          predicates:
+            - Path=/api/v1/special/**
