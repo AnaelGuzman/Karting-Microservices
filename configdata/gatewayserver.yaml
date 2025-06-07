@@ -49,3 +49,7 @@ spring:
           uri: lb://msspecialdaydiscount
           predicates:
             - Path=/api/v1/special/**
+        - id: msrack
+          uri: lb://msrack
+          predicates:
+            - Path=/api/rack
