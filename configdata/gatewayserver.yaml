@@ -44,7 +44,7 @@ spring:
         - id: msfrecuencydiscount
           uri: lb://msfrecuencydiscount
           predicates:
-            - Path=/api/v1/descuentos-frecuentes**
+            - Path=/api/v1/descuentos-frecuentes/**
         - id: msrack
           uri: lb://msrack
           predicates:
