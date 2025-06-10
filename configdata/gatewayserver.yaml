@@ -48,4 +48,4 @@ spring:
         - id: msrack
           uri: lb://msrack
           predicates:
-            - Path=/api/rack
+            - Path=/api/v1/racks/**
