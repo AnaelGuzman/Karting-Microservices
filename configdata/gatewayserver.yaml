@@ -32,11 +32,11 @@ spring:
         - id: msuser
           uri: lb://msuser
           predicates:
-            - Path=/api/v1/users/**
+            - Path=/api/v1/usuarios/**
         - id: msreservation
           uri: lb://msreservation
           predicates:
-            - Path=/api/v1/reservations/**
+            - Path=/api/v1/reservas/**
         - id: mspeoplediscount
           uri: lb://mspeoplediscount
           predicates:
@@ -44,11 +44,7 @@ spring:
         - id: msfrecuencydiscount
           uri: lb://msfrecuencydiscount
           predicates:
-            - Path=/api/v1/frecuency/**
-        - id: msspecialdaydiscount
-          uri: lb://msspecialdaydiscount
-          predicates:
-            - Path=/api/v1/special/**
+            - Path=/api/v1/descuentos-frecuentes**
         - id: msrack
           uri: lb://msrack
           predicates:
