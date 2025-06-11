@@ -1,0 +1,90 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: fee-db-pv
+  labels:
+    type: local
+spec:
+  storageClassName: standard
+  capacity:
+    storage: 2Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/data/feee-db-data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: fee-db-pvc
+  labels:
+    app: postgres
+    tier: database
+spec:
+  storageClassName: standard
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fee-db-deployment
+  labels:
+    app: fee-db-deployment
+    tier: database
+spec:
+  selector:
+    matchLabels:
+      app: fee-db-deployment
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: fee-db-deployment
+        tier: database
+    spec:
+      containers:
+        - name: bd-ms-fee
+          image: mysql
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-credentials
+                  key: DB_USER_GENERAL
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-credentials
+                  key: DB_PASSWORD_GENERAL
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: fee-db-data
+      volumes:
+        - name: fee-db-data
+          persistentVolumeClaim:
+            claimName: fee-db-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fee-db-service
+  labels:
+    app: fee-db-service
+    tier: database
+spec:
+  ports:
+    - port: 3306
+      targetPort: 3306
+      protocol: TCP
+  selector:
+    app: fee-db-deployment
+    tier: database
+  type: LoadBalancer

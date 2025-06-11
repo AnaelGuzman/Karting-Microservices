@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-config-map
+  labels:
+    app: mysql-config-map
+data:
+  DB_HOST_FEE: fee-db-service
+  DB_PORT_FEE: "3306"
+  DB_DBNAME_FEE: bd-ms-fee
