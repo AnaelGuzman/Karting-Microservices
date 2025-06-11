@@ -49,3 +49,7 @@ spring:
           uri: lb://msrack
           predicates:
             - Path=/api/v1/racks/**
+        - id: msreport
+          uri: lb://msreport
+          predicates:
+            - Path=/api/v1/reportes/**
